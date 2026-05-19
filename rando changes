@@ -9,14 +9,14 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --ink: #1a1410;
-    --parchment: #f7f2eb;
-    --gold: #c9a96e;
-    --gold-light: #e8d5b0;
-    --warm-dark: #2c2018;
-    --muted: #8a7d6e;
-    --cream: #faf6f0;
-  }
+  --ink: #4a2f2f;
+  --parchment: #f7f2eb;
+  --gold: #f3b6c8;
+  --gold-light: #f8d6df;
+  --warm-dark: #5a3838;
+  --muted: #9b7474;
+  --cream: #faf6f0;
+}
 
   html { scroll-behavior: smooth; }
 
@@ -409,7 +409,7 @@
 
   /* ── ABOUT ── */
   .about {
-    background: var(--ink);
+    background: #bd7381;
     display: grid;
     grid-template-columns: 1fr 1fr;
     min-height: 60vh;
@@ -447,7 +447,7 @@
   }
 
   .about-visual {
-    background: linear-gradient(135deg, var(--warm-dark) 0%, #3d2e1e 50%, var(--warm-dark) 100%);
+    background: linear-gradient(135deg, #D8A2A9 0%, #EFD1D5 100%);
     display: flex; align-items: center; justify-content: center;
     position: relative;
     overflow: hidden;
@@ -635,7 +635,7 @@
 <section id="collection">
   <div class="section-header fade-in">
     <p class="section-eyebrow">✦ The Collection</p>
-    <h2 class="section-title">Six <em>stories,</em><br>six pairs</h2>
+    <h2 class="section-title">A collection of<br><em>handmade stories</em></h2>
     <div class="section-rule"></div>
   </div>
   <div class="collection">
@@ -784,7 +784,7 @@ products.forEach((p, i) => {
 });
 
 // Hero bg — use first image
-document.getElementById('hero-bg').src = './assets/images/logo.jpg';
+document.getElementById('hero-bg').src = './assets/images/pinklinera.jpg';
 
 function openModal(p) {
   document.getElementById('modal-img').src = imagePaths[p.imgIndex];
