@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Theia Aurora — Handmade by Saira</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1410;
+    --parchment: #f7f2eb;
+    --gold: #c9a96e;
+    --gold-light: #e8d5b0;
+    --warm-dark: #2c2018;
+    --muted: #8a7d6e;
+    --cream: #faf6f0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250, 246, 240, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .logo {
+    display: flex; flex-direction: column; line-height: 1;
+  }
+  .logo-main {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+  .logo-sub {
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  nav { display: flex; gap: 36px; align-items: center; }
+  nav a {
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 64px 80px 80px;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--muted);
+    max-width: 380px;
+    margin-bottom: 48px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 40px;
+    background: var(--ink);
+    color: var(--parchment);
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--ink);
+  }
+
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+    background: var(--warm-dark);
+  }
+  .hero-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform 8s ease;
+  }
+  .hero-image:hover img { transform: scale(1.04); }
+
+  .hero-ornament {
+    position: absolute;
+    bottom: 48px; left: 64px;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(201, 169, 110, 0.6);
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-bar {
+    background: var(--ink);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-inner span {
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 40px;
+  }
+  .marquee-inner span.dot {
+    color: rgba(201, 169, 110, 0.4);
+    margin: 0;
+    letter-spacing: 0;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    text-align: center;
+    padding: 80px 40px 60px;
+  }
+  .section-eyebrow {
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-rule {
+    width: 48px; height: 1px;
+    background: var(--gold);
+    margin: 24px auto 0;
+  }
+
+  /* ── COLLECTION GRID ── */
+  .collection {
+    padding: 0 40px 100px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .card {
+    position: relative;
+    overflow: hidden;
+    background: var(--warm-dark);
+    cursor: pointer;
+    aspect-ratio: 3/4;
+  }
+  .card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease, opacity 0.4s ease;
+    opacity: 0.88;
+  }
+  .card:hover img {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,20,16,0.85) 0%, rgba(26,20,16,0.1) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px 28px;
+    opacity: 1;
+    transition: all 0.4s ease;
+  }
+
+  .card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    color: #fff;
+    letter-spacing: 0.03em;
+    margin-bottom: 6px;
+  }
+
+  .card-tagline {
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--gold-light);
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  .card:hover .card-tagline {
+    max-height: 80px;
+    opacity: 1;
+  }
+
+  .card-cta {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,169,110,0.4);
+    padding-bottom: 2px;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all 0.3s ease 0.1s;
+  }
+  .card:hover .card-cta {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .card-emoji {
+    position: absolute;
+    top: 20px; right: 20px;
+    font-size: 1.1rem;
+    opacity: 0.85;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(26,20,16,0.7);
+    backdrop-filter: blur(6px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--cream);
+    max-width: 900px; width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .modal-img { overflow: hidden; }
+  .modal-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .modal-body {
+    padding: 56px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute; top: 20px; right: 24px;
+    background: none; border: none;
+    font-size: 1.2rem; color: var(--muted);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--ink); }
+
+  .modal-eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .modal-rule { width: 36px; height: 1px; background: var(--gold); margin-bottom: 24px; }
+
+  .modal-desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+
+  .modal-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid rgba(138,125,110,0.35);
+    padding: 6px 14px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+
+  .modal-inquire {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 13px 36px;
+    background: var(--ink);
+    color: var(--parchment);
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--ink);
+    cursor: pointer;
+    transition: all 0.3s;
+    align-self: flex-start;
+  }
+  .modal-inquire:hover { background: transparent; color: var(--ink); }
+
+  /* ── ABOUT ── */
+  .about {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 60vh;
+  }
+
+  .about-text {
+    padding: 100px 80px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .about-eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+  }
+
+  .about-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: var(--parchment);
+    line-height: 1.25;
+    margin-bottom: 28px;
+  }
+  .about-title em { font-style: italic; color: var(--gold); }
+
+  .about-body {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.95;
+    color: rgba(247,242,235,0.6);
+    max-width: 400px;
+  }
+
+  .about-visual {
+    background: linear-gradient(135deg, var(--warm-dark) 0%, #3d2e1e 50%, var(--warm-dark) 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-monogram {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14rem;
+    font-weight: 300;
+    color: rgba(201,169,110,0.08);
+    line-height: 1;
+    user-select: none;
+    letter-spacing: -0.05em;
+  }
+
+  .about-badge {
+    position: absolute;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold-light);
+    text-align: center;
+    line-height: 1.6;
+  }
+  .about-badge small {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(201,169,110,0.5);
+    font-style: normal;
+    margin-bottom: 8px;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 100px 40px;
+    text-align: center;
+    background: var(--parchment);
+  }
+
+  .contact-inner { max-width: 560px; margin: 0 auto; }
+
+  .contact p {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  .contact-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+  .contact-link {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    padding: 12px 28px;
+    border: 1px solid rgba(26,20,16,0.25);
+    transition: all 0.3s;
+  }
+  .contact-link:hover { background: var(--ink); color: var(--parchment); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 36px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--parchment);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-copy {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    color: rgba(247,242,235,0.35);
+  }
+
+  .footer-saira {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    header { padding: 16px 24px; }
+    nav { gap: 20px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-image { min-height: 50vh; }
+    .hero-text { padding: 60px 32px; }
+    .grid { grid-template-columns: 1fr 1fr; }
+    .about { grid-template-columns: 1fr; }
+    .about-visual { min-height: 300px; }
+    .modal { grid-template-columns: 1fr; }
+    .modal-img { max-height: 50vh; }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 14px 20px; }
+    nav a { display: none; }
+    nav a:last-child { display: block; }
+    .grid { grid-template-columns: 1fr; }
+    .hero-title { font-size: 2.5rem; }
+    .collection { padding: 0 0 60px; }
+    .about-text { padding: 60px 32px; }
+    .contact { padding: 60px 24px; }
+    footer { padding: 28px 24px; }
+    .modal-body { padding: 36px 28px; }
+  }
+
+  /* ── FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo" style="text-decoration:none;">
+    <span class="logo-main">Theia Aurora</span>
+    <span class="logo-sub">Handmade by Saira</span>
+  </a>
+  <nav>
+    <a href="#collection">Collection</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow">✦ Handcrafted Beadwork Jewelry</p>
+    <h1 class="hero-title">Worn with<br><em>intention,</em><br>made with love.</h1>
+    <p class="hero-desc">Each piece from Theia Aurora is woven bead by bead — a quiet labor of love that carries its own story, texture, and soul.</p>
+    <a href="#collection" class="btn-primary">Explore the Collection</a>
+    <span class="hero-ornament">✦ Theia Aurora — Handmade by Saira</span>
+  </div>
+  <div class="hero-image">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" 
+         id="hero-bg" alt="Theia Aurora jewelry" style="background:#2c2018;">
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-bar">
+  <div class="marquee-inner" id="marquee">
+    <span>Handmade by Saira</span><span class="dot">·</span>
+    <span>Beaded with Love</span><span class="dot">·</span>
+    <span>Theia Aurora</span><span class="dot">·</span>
+    <span>Each Piece One of a Kind</span><span class="dot">·</span>
+    <span>Crafted with Intention</span><span class="dot">·</span>
+    <span>Handmade by Saira</span><span class="dot">·</span>
+    <span>Beaded with Love</span><span class="dot">·</span>
+    <span>Theia Aurora</span><span class="dot">·</span>
+    <span>Each Piece One of a Kind</span><span class="dot">·</span>
+    <span>Crafted with Intention</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- COLLECTION -->
+<section id="collection">
+  <div class="section-header fade-in">
+    <p class="section-eyebrow">✦ The Collection</p>
+    <h2 class="section-title">Six <em>stories,</em><br>six pairs</h2>
+    <div class="section-rule"></div>
+  </div>
+  <div class="collection">
+    <div class="grid" id="product-grid"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text fade-in">
+    <p class="about-eyebrow">✦ About Theia Aurora</p>
+    <h2 class="about-title">Every bead<br>placed <em>by hand.</em></h2>
+    <p class="about-body">
+      Theia Aurora is a handmade jewelry brand born from a deep love of beadwork and the stories each stitch can tell. 
+      Every pair of earrings is crafted slowly, intentionally — drawing from nature, culture, and quiet moments of beauty. 
+      No two pieces are exactly the same. What you wear carries the hours, the patience, and the heart behind every single bead.
+    </p>
+  </div>
+  <div class="about-visual">
+    <div class="about-monogram">TA</div>
+    <div class="about-badge">
+      <small>Theia Aurora</small>
+      Handmade by Saira
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner fade-in">
+    <div class="section-header" style="padding: 0 0 40px;">
+      <p class="section-eyebrow">✦ Get in Touch</p>
+      <h2 class="section-title">Inquire or<br><em>commission</em> a piece</h2>
+      <div class="section-rule"></div>
+    </div>
+    <p>Interested in a piece, a custom order, or simply want to say hello? Reach out — each inquiry is answered personally by Saira.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:sairajacob2689@gmail.com">✉ Email</a>
+      <a class="contact-link" href="https://www.instagram.com/theia.aurora/">⬡ Instagram</a>
+      <a class="contact-link" href="https://wa.me/919895199052">⬡ WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Theia Aurora</span>
+  <span class="footer-saira">Handmade by Saira</span>
+  <span class="footer-copy">© 2025 Theia Aurora. All rights reserved.</span>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal" id="modal-inner">
+    <div class="modal-img"><img id="modal-img" src="" alt=""></div>
+    <div class="modal-body">
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+      <p class="modal-eyebrow">✦ Theia Aurora</p>
+      <h2 class="modal-title" id="modal-name"></h2>
+      <div class="modal-rule"></div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div id="modal-tags"></div>
+      <a href="#contact" class="modal-inquire" onclick="document.getElementById('modal').classList.remove('open')">Inquire About This Piece</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const products = [
+  {
+    name: "Oceane",
+    emoji: "🐚",
+    tagline: "Coastal elegance, bead by bead.",
+    desc: "Inspired by the quiet beauty of the ocean, these handmade shell-shaped earrings bring a soft coastal elegance to every look. Delicate, lightweight, and intricately crafted, Oceane is perfect for those who carry a little piece of the sea with them wherever they go.",
+    tags: ["Ocean-Inspired", "Shell Form", "Gold Hardware", "Lightweight"],
+    imgIndex: 0
+  },
+  {
+    name: "Malara",
+    emoji: "✨",
+    tagline: "Golden warmth. Festive grace.",
+    desc: "Delicate beaded hoops inspired by the warmth, beauty, and golden elegance of festive traditions. Handcrafted to add a graceful statement to your Onam look — lightweight, timeless, and made with love.",
+    tags: ["Beaded Hoops", "Gold & White", "Festive Wear", "Timeless"],
+    imgIndex: 1
+  },
+  {
+    name: "Tribal Spirit",
+    emoji: "✨",
+    tagline: "Color. Rhythm. Craft.",
+    desc: "A bold expression of color, rhythm, and craft. These handcrafted bead earrings are inspired by the essence of tribal artistry. Woven with intricate detail and vibrant patterns, each pair carries a sense of movement and individuality. Lightweight yet striking — made for days when you want your accessories to speak for you.",
+    tags: ["Bold Patterns", "Statement Piece", "Tribal Art", "Vibrant"],
+    imgIndex: 2
+  },
+  {
+    name: "Rio",
+    emoji: "🦜",
+    tagline: "Tropical whimsy, toucan charm.",
+    desc: "Handcrafted, these statement earrings capture the playful charm of the toucan in a bold, stylized form. Set against a deep navy base, vibrant pops of pink, orange, turquoise, and lime bring the design to life. Lightweight yet eye-catching — perfect for days when you want your accessories to do the talking.",
+    tags: ["Toucan Design", "Tropical", "Playful", "Navy Base"],
+    imgIndex: 3
+  },
+  {
+    name: "Featherington",
+    emoji: "✨",
+    tagline: "Quiet luxury in every stitch.",
+    desc: "Delicate yet striking, Featherington draws inspiration from the elegance of feathered forms, brought to life through intricate beadwork and soft, luminous tones. Each piece is carefully handcrafted, blending movement, texture, and quiet luxury into a design that feels both timeless and unique. Lightweight and effortlessly graceful — these earrings elevate even the simplest look.",
+    tags: ["Feather Form", "Soft Tones", "Refined", "Textured"],
+    imgIndex: 4
+  },
+  {
+    name: "Linera",
+    emoji: "🔥",
+    tagline: "Structure above. Fringe on fire.",
+    desc: "A bold black base meets a fringe kissed with fire. Red, gold, and ivory beads cascade downward like embers in motion — warm, earthy, and full of spirit. The structured top holds steady while the fringe dances freely, creating that effortless boho sway.",
+    tags: ["Fringe", "Earthy Tones", "Boho", "Statement"],
+    imgIndex: 5
+  }
+];
+
+// Image paths from uploads
+const imagePaths = [
+  './assets/images/oceane.jpg',
+  './assets/images/malara.jpg',
+  './assets/images/tribalspirit.jpg',
+  './assets/images/rio.jpg',
+  './assets/images/featherington.jpg',
+  './assets/images/linera.jpg'
+];
+
+// Build grid
+const grid = document.getElementById('product-grid');
+products.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <img src="${imagePaths[p.imgIndex]}" alt="${p.name}" loading="lazy">
+    <span class="card-emoji">${p.emoji}</span>
+    <div class="card-overlay">
+      <div class="card-name">${p.name}</div>
+      <div class="card-tagline">${p.tagline}</div>
+      <span class="card-cta">View Details →</span>
+    </div>
+  `;
+  card.addEventListener('click', () => openModal(p));
+  grid.appendChild(card);
+});
+
+// Hero bg — use first image
+document.getElementById('hero-bg').src = './assets/images/logo.jpg';
+
+function openModal(p) {
+  document.getElementById('modal-img').src = imagePaths[p.imgIndex];
+  document.getElementById('modal-name').textContent = p.name;
+  document.getElementById('modal-desc').textContent = p.desc;
+  document.getElementById('modal-tags').innerHTML = p.tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+document.querySelector('.modal-close').addEventListener('click', () => {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+});
+
+// Fade in on scroll
+const faders = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+faders.forEach(el => observer.observe(el));
+
+// Duplicate marquee for seamless loop
+const m = document.getElementById('marquee');
+m.innerHTML += m.innerHTML;
+</script>
+</body>
+</html>
